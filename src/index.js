@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import { reducer } from './reducers';
-import { Provider } from 'react-redux'; //react component 
+import { Provider } from 'react-redux'; //react component taht provides the store state of the application
 import { createStore } from 'redux'; // storage for the state of the app {an object}
 
 import 'bulma/css/bulma.css';

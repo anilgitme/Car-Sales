@@ -7,7 +7,7 @@ import Total from './components/Total';
 import {removeFeature} from './actions/removeFeatures';
 import {addFeature} from './actions/addFeatures'
 
-const App = (props) => {
+const App = (props) => { //passing props in place of state here
   // const state = {
   //   additionalPrice: 0,
   //   car: {
