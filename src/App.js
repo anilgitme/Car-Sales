@@ -1,11 +1,13 @@
 import React from 'react';
-
+import { connect } from 'react-redux' //connect is a function used to connect react components to the redux store.. can be used in any javascript application
 import Header from './components/Header';
 import AddedFeatures from './components/AddedFeatures';
 import AdditionalFeatures from './components/AdditionalFeatures';
 import Total from './components/Total';
+import {removeFeature} from './actions/removeFeatures';
+import {addFeature} from './actions/addFeatures'
 
-const App = () => {
+const App = (props) => {
   // const state = {
   //   additionalPrice: 0,
   //   car: {
@@ -26,15 +28,23 @@ const App = () => {
   return (
     <div className="boxes">
       <div className="box">
-        <Header car={state.car} />
-        <AddedFeatures car={state.car} />
+        <Header car={props.car} /> 
+        <AddedFeatures car={props.car} removeFeature={props.removeFeature} />
       </div>
       <div className="box">
-        <AdditionalFeatures additionalFeatures={state.additionalFeatures} />
-        <Total car={state.car} additionalPrice={state.additionalPrice} />
+        <AdditionalFeatures additionalFeatures={props.additionalFeatures} addFeature={props.addFeature} /> 
+        <Total car={props.car} additionalPrice={props.additionalPrice} />
       </div>
     </div>
   );
 };
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    additionalPrice: state.additionalPrice,
+    additionalFeatures: state.additionalFeatures,   //these props im intrested in
+    car: state.car,
+  }
+}
+
+export default connect(mapStateToProps,{ addFeature, removeFeature })(App);  //mapstatetoprops higher order component actions being passed  as the second property (objects)
